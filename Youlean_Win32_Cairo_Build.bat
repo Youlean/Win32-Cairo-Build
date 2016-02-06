@@ -36,6 +36,10 @@
 @echo.
 @pause
 
+
+@set YCAIRO_MSVC_PATH=C:\Program Files (x86)\Microsoft Visual Studio 14.0
+
+
 @echo.
 @echo.
 @echo IMPORTANT!!! Read this!!!
@@ -46,51 +50,220 @@
 @echo From tools you will need msys(included), @fart.exe(included)
 @echo Visual Studio 2013 or newer (but it could work on older VS too),
 @echo and I am not sure, but you could need Windows SDK installed.
-@echo.
-@echo This script by default uses Visual Studio 2015 with a path:
-@echo C:\Program Files (x86)\Microsoft Visual Studio 14.0
-@echo If you want to use different version of visual studio, or
-@echo your visual studio path is different, open this .bat file with
-@echo notepad and change path next to "@set YCAIRO_MSVC_PATH="
+
 @echo.
 @echo If your build fales, try again as it could sometimes break 
 @echo because of parallel compilation...
 @echo.
-@echo When you see "Building..." don't exit CMD before it finish by
+@echo After you see "Building..." don't exit CMD before it finish by
 @echo it's self because then the script will not be able to do the 
 @echo cleanup and the next build will probably fail.
+@echo.
 @echo If you exited CMD by accident, just delete all souces from
 @echo cairo, freetype, zlib, libpng and pixman, and add fresh ones.
+@echo.
+@echo NOTE: If you exit CMD by clicking on "X" on window, it will 
+@echo take few seconds before it closes, so wait a little bit... ;)
+@echo.
 @echo.
 @pause
 
 
+@rem Setting Visual Studio Path******************************************************************************
 
-
-
-
-@set YCAIRO_MSVC_PATH=C:\Program Files (x86)\Microsoft Visual Studio 14.0
-
-
-
-
-
-
+:vs_goto
 @echo.
-@if not exist "%YCAIRO_MSVC_PATH%" (
+@echo.
+@echo.
+@echo.
+@echo.
+@echo.
+@echo.
+@echo.
+@echo.
+@echo.
+@echo.
+@echo.
+@echo.
+@echo.
+@echo.
+@echo.
+@echo.
+@echo.
+@echo.
+@echo.
+@echo Would you like to setup Visual Studio path?
+@echo.
+@echo (you need to do this only once)
+@echo.
+@set /P ANSWER=(Y/N)
+@echo.
+@echo Your choice: "%ANSWER%"
+@echo.
+@if /i {%ANSWER%}=={Y} (@set SET_VS_PATH=TRUE) 
+@if /i {%ANSWER%}=={N} (@set SET_VS_PATH=FALSE)   
+
+@if /i not {%ANSWER%}=={Y} (
+@if /i not {%ANSWER%}=={N} (
+@echo Man, check your typing...
+@echo.
+@echo Let's go again...
+@echo.
+@echo.
+@echo.
+@echo.
+@echo.
+@echo.
+@echo.
+@echo.
+@echo.
+@echo.
+@echo.
+@echo.
+@echo.
+@echo.
+@echo.
+@echo.
+@echo.
+@echo.
+@pause
+@goto vs_goto
+)
+)
+
+:vs_false_path_goto
+@if "%SET_VS_PATH%" == "TRUE" (
+@echo.
+@echo.
+@echo.
+@echo.
+@echo.
+@echo.
+@echo.
+@echo.
+@echo.
+@echo.
+@echo.
+@echo.
+@echo.
+@echo.
+@echo.
+@echo You need something like [without quotes]
+@echo.
+@echo "C:\Program Files (x86)\Microsoft Visual Studio 14.0"
+@echo.
+@echo Current path is "%YCAIRO_MSVC_PATH%"
+@echo.
+@echo. 
+@echo.
+@echo Enter path without quotes and backslash at the end!
+@set /P VS_ANSWER=(PATH-)
+@echo.
+@echo Your choice: %VS_ANSWER% 
+@echo.
+)
+
+
+
+
+@rem Workaround to save new path
+@if "%SET_VS_PATH%" == "TRUE" (
+@tools\fart.exe  -- "Youlean_Win32_Cairo_Build.bat" "YCAIRO_MSVC_PATH=%YCAIRO_MSVC_PATH%" "YCAIRO_MSVC_PATH=%VS_ANSWER%"
+@tools\fart.exe  -- "Youlean_Win32_Cairo_Build.bat_tmp.bat" "%YCAIRO_MSVC_PATH=%YCAIRO_MSVC_PATH%" "YCAIRO_MSVC_PATH=%VS_ANSWER%"
+
+
+@if not exist "%VS_ANSWER%\Common7\Tools\vsvars32.bat" (
 @echo.
 @echo.
 @echo INVALID VISUAL STUDIO PATH!!!
 @echo.
+@echo Script now needs to exit... 
 @echo.
-@echo Open this .bat file and change path next to "@set YCAIRO_MSVC_PATH="
+@echo Open script and set Visual Studio path again...
 @echo.
-@echo CMD is now exiting...
+@echo.
+@echo.
+@echo.
+@echo.
+@echo.
+@echo.
+@echo.
+@echo.
+@echo.
+@echo.
+@echo.
+@echo.
+@echo.
+@echo.
+@echo.
+@echo.
 @echo.
 @pause
 @exit
 )
 
+@echo.
+@echo Path was set sucessfuly!!! 
+@echo.
+@echo Run the script again, but now skip Visual Studio setting path step...
+@echo.
+@echo Script will now exit...
+@echo.
+@echo.
+@echo.
+@echo.
+@echo.
+@echo.
+@echo.
+@echo.
+@echo.
+@echo.
+@echo.
+@echo.
+@echo.
+@echo.
+@echo.
+@echo.
+@echo.
+@echo.
+@pause
+@exit
+)
+
+
+
+@echo.
+@if not exist "%YCAIRO_MSVC_PATH%\Common7\Tools\vsvars32.bat" (
+@echo.
+@echo.
+@echo INVALID VISUAL STUDIO PATH!!!
+@echo.
+@echo.
+@echo Let's try setting Visual Studio path...
+@echo.
+@echo.
+@echo.
+@echo.
+@echo.
+@echo.
+@echo.
+@echo.
+@echo.
+@echo.
+@echo.
+@echo.
+@echo.
+@echo.
+@echo.
+@echo.
+@echo.
+@echo.
+@pause
+@set SET_VS_PATH=TRUE
+@goto vs_false_path_goto
+)
+
+@rem Start Building*******************************************************************************************
 
 @echo.
 @echo LETS START BUILDING NOW!!!
