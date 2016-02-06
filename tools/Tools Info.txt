@@ -1,0 +1,14 @@
+
+fart.exe : http://fart-it.sourceforge.net/
+Download from: http://sourceforge.net/projects/fart-it/
+This is nice tool for renaming text files using cmd...
+
+
+msys: http://www.mingw.org/wiki/msys
+Download from: MinGW instalation, but you can download it separatly, but make sure that path to bin is 
+"tools\msys\bin"
+
+For example you can download from here: 
+"http://sourceforge.net/projects/mingw-w64/files/External%20binary%20packages%20(Win64%20hosted)/MSYS%20(32-bit)/"
+File:
+"MSYS-20111123.zip"
