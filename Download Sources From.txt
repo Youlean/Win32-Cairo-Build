@@ -1,0 +1,10 @@
+Download sources from this location and then open it and place it in corresponding folders.
+For example download "cairo-1.14.6.tar.xz", open it with z-zip app, then open cairo-1.14.6.tar,
+then open cairo-1.14.6 and copy everything from that folder into "cairo" folder next to bat script.
+
+Locations:
+
+Cairo/Pixman: http://www.cairographics.org/releases/
+Zlib: http://www.zlib.net/
+Libpng http://www.libpng.org/pub/png/libpng.html
+Freetype http://download.savannah.gnu.org/releases/freetype/
