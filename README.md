@@ -18,6 +18,4 @@ then check "Build" folder for headers and sources
 Regards, Youlean
 
 
-TESTED IN:
-Visual Studio Community 2015
-Visual Studio Express 2013
+TESTED IN: Visual Studio Community 2015, Visual Studio Express 2013
