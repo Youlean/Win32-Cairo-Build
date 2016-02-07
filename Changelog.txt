@@ -1,0 +1,6 @@
+1.01
+Fixed bugs building on Visual Studio 2013 Express edition
+Added script for fast building with last configuration
+
+1.00
+Release

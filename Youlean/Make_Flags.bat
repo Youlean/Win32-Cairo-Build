@@ -1,0 +1,1 @@
+MMX=off SSE2=on SSSE3=on
