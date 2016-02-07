@@ -17,3 +17,6 @@ then check "Build" folder for headers and sources
 
 Regards, Youlean
 
+
+TESTED IN:
+Visual Studio Community 2015
